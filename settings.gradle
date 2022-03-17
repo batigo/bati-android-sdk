@@ -1,0 +1,3 @@
+include ':bati'
+include ':app'
+rootProject.name = "batisdk"
