@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package com.github.bati;
+
+option go_package = "github.com/batigo/cmsg";
+
+message ClientMsg {
+  string id = 1;
+  ClientMsgType type = 2;
+  int32 ack = 3;
+  optional string service_id = 4;
+  optional CompressorType compressor = 5;
+  optional bytes biz_data = 6;
+  optional InitData init_data = 7;
+}
+
+enum ClientMsgType {
+  Unused = 0;
+  Init = 1;
+  InitResp = 2;
+  Biz = 3;
+  Ack = 4;
+  Echo = 100;
+}
+
+message InitData {
+  CompressorType accept_compressor = 1;
+  uint32 ping_interval = 2;
+}
+
+enum CompressorType {
+  Null = 0;
+  Deflate = 1;
+}
